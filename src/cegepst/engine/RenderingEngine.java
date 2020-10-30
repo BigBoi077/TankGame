@@ -10,18 +10,27 @@ import java.io.IOException;
 import java.net.URL;
 
 public class RenderingEngine {
+
+    private static RenderingEngine instance;
     private JFrame frame;
     private JPanel panel;
     private BufferedImage bufferedImage;
 
-    public RenderingEngine() {
-        initialiseFrame();
-        initialisePanel();
-    }
-
     public void start() {
         frame.setVisible(true);
     }
+
+    public void addInputListener(KeyListener listener) {
+        panel.addKeyListener(listener);
+    }
+
+    public static RenderingEngine getInstance() {
+        if (instance == null) {
+            instance = new RenderingEngine();
+        }
+        return instance;
+    }
+
 
     public void stop() {
         frame.setVisible(false);
@@ -42,14 +51,15 @@ public class RenderingEngine {
         graphics2D.dispose();
     }
 
+    private RenderingEngine() {
+        initialiseFrame();
+        initialisePanel();
+    }
+
     private RenderingHints getOptimalRenderingHints() {
         RenderingHints  rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         rh.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         return rh;
-    }
-
-    public void addInputListener(KeyListener listener) {
-        panel.addKeyListener(listener);
     }
 
     private void initialisePanel() {
