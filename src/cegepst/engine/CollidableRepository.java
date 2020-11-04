@@ -19,6 +19,10 @@ public class CollidableRepository implements Iterable<StaticEntity>{
         return instance;
     }
 
+    private CollidableRepository() {
+        registeredCollidableEntitites = new ArrayList<>();
+    }
+
     public void registerEntity(StaticEntity entity) {
         registeredCollidableEntitites.add(entity);
     }
@@ -33,10 +37,6 @@ public class CollidableRepository implements Iterable<StaticEntity>{
 
     public int count() {
         return registeredCollidableEntitites.size();
-    }
-
-    private CollidableRepository() {
-        registeredCollidableEntitites = new ArrayList<>();
     }
 
     @Override
