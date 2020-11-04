@@ -41,7 +41,7 @@ public class Collision {
     }
 
     private int distance(DistanceCalculator calculator) {
-        Rectangle collisionBound = entity.geHitBox();
+        Rectangle collisionBound = entity.getHitBox();
         int allowedDistance = entity.getSpeed();
         for (StaticEntity other : CollidableRepository.getInstance()) {
             if (collisionBound.intersects(other.getBounds())) {
